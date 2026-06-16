@@ -1,8 +1,4 @@
-//import { ProductList } from "../data/productList";
-
 function ProductCard({ product, onAddToCart }) {
-
-  
 
   return (
     <div className="product-card">
@@ -11,7 +7,7 @@ function ProductCard({ product, onAddToCart }) {
         <p>Price: {product.price}</p>
 
         <button
-          onClick={() => onAddToCart(product.name)}
+          onClick={() => onAddToCart(product)}
         >
           Add to cart
         </button>
