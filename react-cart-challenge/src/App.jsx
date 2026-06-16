@@ -2,57 +2,20 @@ import ProductList from "./components/ProductList";
 import { products } from "./data/productList";
 import Cart from "./components/Cart";
 import { useState } from "react";
+import { addToCart, removeFromCart, calculateTotal } from "./utils/cart";
 
 function App() {
   const [cart, setCart] = useState([]);
 
   const handleAddToCart = (product) => {
-    console.log(`${product.name} add to cart success`);
-
-    const existingProduct = cart.find(
-      (item) => item.id === product.id
-    );
-
-    if (existingProduct) {
-      setCart(
-        cart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1}
-            : item
-        )
-      )
-    } else {
-      setCart([...cart, {...product, quantity: 1}])
-    };
+    setCart(addToCart(cart, product));
   };
 
   const handleRemoveFromCart = (product) => {
-    console.log(`${product.name} remove from cart`);
-
-    const existingProduct = cart.find(
-        (item => item.id === product.id)
-    );
-
-    if (existingProduct.quantity === 1) {
-      setCart(
-        cart.filter((item) => item.id !== product.id)
-      )
-    } else {
-      setCart(
-        cart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity - 1}
-            : item
-        )
-      )
-    }
+    setCart(removeFromCart(cart, product));
   };
 
-  const total = cart.reduce(
-    (accumulator, item) =>
-      accumulator + item.price * item.quantity,
-    0
-  );
+  const total = calculateTotal(cart);
 
   return (
     <div>
