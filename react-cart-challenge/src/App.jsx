@@ -1,10 +1,12 @@
 //import { useState } from "react";
 import ProductList from "./components/ProductList";
 import { products } from "./data/productList";
+import Cart from "./components/Cart";
+import { useState } from "react";
 
 function App() {
-//  const [products, setProducts] = useState([]);
-//  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
+
   const handleAddToCart = (product) => {
     console.log(`${product} add to cart success`)
   }
@@ -16,7 +18,10 @@ function App() {
         onAddToCart={handleAddToCart}
       />
 
-      <h1>Cart</h1>
+      <Cart
+        cart={cart}
+      />
+
     </div>
   );
 }
