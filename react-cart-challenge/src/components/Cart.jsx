@@ -7,7 +7,15 @@ function Cart ({ cart }) {
                 <p>Add a product to your cart.</p>
             ):
             (
-                <div>Os itens adicionados ao carrinho </div>
+                <div>
+                    {cart.map((product) => (
+                        <div key={product.id}>
+                            <h3>{product.name}</h3>
+                            <p>Price: ${product.price}</p>
+                            <p>Quantity: {product.quantity}</p>
+                        </div>
+                    ))}
+                </div>
             )}
         </div>
     );
