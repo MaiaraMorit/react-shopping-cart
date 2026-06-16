@@ -26,6 +26,34 @@ function App() {
     };
   };
 
+  const handleRemoveFromCart = (product) => {
+    console.log(`${product.name} remove from cart`);
+
+    const existingProduct = cart.find(
+        (item => item.id === product.id)
+    );
+
+    if (existingProduct.quantity === 1) {
+      setCart(
+        cart.filter((item) => item.id !== product.id)
+      )
+    } else {
+      setCart(
+        cart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity - 1}
+            : item
+        )
+      )
+    }
+  };
+
+  const total = cart.reduce(
+    (accumulator, item) =>
+      accumulator + item.price * item.quantity,
+    0
+  );
+
   return (
     <div>
       <ProductList
@@ -35,6 +63,9 @@ function App() {
 
       <Cart
         cart={cart}
+        total={total}
+        onRemoveFromCart={handleRemoveFromCart}
+        onAddToCart={handleAddToCart}
       />
 
     </div>

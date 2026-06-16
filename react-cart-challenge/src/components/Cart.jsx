@@ -1,4 +1,4 @@
-function Cart ({ cart }) {
+function Cart ({ cart, total, onRemoveFromCart, onAddToCart }) {
 
     return (
         <div>
@@ -12,11 +12,23 @@ function Cart ({ cart }) {
                         <div key={product.id}>
                             <h3>{product.name}</h3>
                             <p>Price: ${product.price}</p>
-                            <p>Quantity: {product.quantity}</p>
+
+                            <button
+                                onClick={() => onRemoveFromCart(product)}
+                            >
+                                -
+                            </button>
+                            <span>Quantity: {product.quantity}</span>
+                            <button
+                                onClick={() => onAddToCart(product)}
+                            >
+                                +
+                            </button>
                         </div>
                     ))}
                 </div>
             )}
+            <h3>Total: ${total}</h3>
         </div>
     );
 }
