@@ -1,5 +1,7 @@
 # Product List React Challenge
 
+![E-Commerce Store](./react-cart-challenge/public/image.png)
+
 Projeto desenvolvido em React para praticar conceitos fundamentais como componentes, props, renderização de listas e gerenciamento de estado.
 
 ## Objetivo
